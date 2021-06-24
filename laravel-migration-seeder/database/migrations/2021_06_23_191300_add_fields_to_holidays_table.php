@@ -14,14 +14,14 @@ class AddFieldsToHolidaysTable extends Migration
     public function up()
     {
         Schema::table('holidays', function (Blueprint $table) {
-            $table->char('name', 100)->comment('Package name');
-            $table->string('description', 255);
+            $table->char('name', 100);
+            $table->string('description', 255)->nullable();
             $table->char('modality', 100)->comment('All inclusive etc');
             $table->integer('price');
             $table->string('country');
             $table->smallInteger('cod_manager');
-            $table->integer('length');
-            $table->char('transport', 100)->comment('Airplane, boat, train, bus');
+            $table->integer('length')->after('name');
+            $table->char('transport', 100)->comment('Airplane, boat, train, bus')->after('modality')->nullable();
         });
     }
 
